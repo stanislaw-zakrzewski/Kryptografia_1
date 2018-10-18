@@ -1,8 +1,29 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <TextArea fx:id="t1" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+      <Button fx:id="button" mnemonicParsing="false" onAction="#pressButton" prefHeight="25.0" prefWidth="200.0" text="Button" GridPane.rowIndex="3" />
+      <TextArea fx:id="t2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <Button fx:id="fileChooser" mnemonicParsing="false" onAction="#pressChooseFile" prefHeight="25.0" prefWidth="201.0" text="Choose File" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+   </children>
 </GridPane>
