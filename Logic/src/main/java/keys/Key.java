@@ -8,6 +8,13 @@ public class Key {
     }
 
     public void genKi() {
+<<<<<<< HEAD
 
     }
+=======
+        ki = new byte[5];
+    }
+
+
+>>>>>>> 76fbd4efa7eb1c996f35a7907d0d8b5255512305
 }
