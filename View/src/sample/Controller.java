@@ -10,7 +10,7 @@ import java.io.File;
 
 public class Controller {
     public TextArea t1, t2;
-    public Button button, fileChooser;
+    public Button encode, decode, fileChooser;
 
     private String file;
 
@@ -18,8 +18,12 @@ public class Controller {
 
     }
 
-    public void pressButton(ActionEvent event) {
-        t2.setText(t1.getText());
+    public void pressEncode(ActionEvent event) {
+
+    }
+
+    public void pressDecode(ActionEvent event) {
+
     }
 
     public void pressChooseFile(ActionEvent event) {
