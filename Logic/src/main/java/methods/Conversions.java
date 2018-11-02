@@ -34,10 +34,16 @@ public class Conversions {
                 readyBytes.get(readyBytes.size() - 1).add((byte) 0);
             }
         }
-        readyBytes.forEach(l -> {
-            l.forEach(System.out::print);
-            System.out.println();
-        });
         return readyBytes;
+    }
+
+    public static List<Byte> numberTo4Byte(byte number) {
+        List<Byte> ret = new ArrayList<>();
+        int val = number;
+        for (int i = 0; i < 4; i++) {
+            ret.add((byte)((val & 16) == 0 ? 0 : 1));
+            val <<= 1;
+        }
+        return ret;
     }
 }
