@@ -1,7 +1,9 @@
 
 import methods.Conversions;
+import methods.FunctionF;
 import methods.Permutacjon;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -17,5 +19,18 @@ public class Main {
 
         gotwe.forEach(System.out::print);
 
+
+        List<Byte> test1 = new ArrayList<>();
+        List<Byte> test2 = new ArrayList<>();
+
+        for (int i=0;i<32;i++) {
+            test1.add(bb.get(i));
+        }
+        for (int i=0;i<48;i++) {
+            test2.add(bb.get(i));
+        }
+
+        FunctionF f = new FunctionF();
+        f.functionF(test1,test2);
     }
 }
