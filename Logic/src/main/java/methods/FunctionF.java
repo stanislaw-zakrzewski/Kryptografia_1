@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FunctionF {
-    public List<Byte> functionF(List<Byte> r, List<Byte> key) {
+    public static List<Byte> functionF(List<Byte> r, List<Byte> key) {
         List<Byte> ret = new ArrayList<>();
 
         //1 permutacja z rozszerzeniem (tabela E)
