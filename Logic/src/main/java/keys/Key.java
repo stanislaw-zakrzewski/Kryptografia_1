@@ -42,7 +42,7 @@ public class Key {
             keySecendHalf = new ArrayList<>(keyAfterPC1.subList(28,56));
             for(int i = 0; i < Tables.R[permutationNumber];i++){
                 keyFirstHalf.remove(0);
-                keyFirstHalf.add((byte) 0);
+                keyFirstHalf.add(new Byte((byte) 0));
                 keySecendHalf.remove(0);
                 keySecendHalf.add((byte) 0);
             }
