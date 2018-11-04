@@ -1,5 +1,7 @@
 package methods;
 
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,10 +72,20 @@ public class Conversions {
     }
 
     public static String toNormalCharacters(String binary) {
+        int pom = binary.length()/8;
+        String[] ss = new String[pom];// binary.split( " " );
+        for(int i = 0; i < pom; i++) {
+            ss[i] = binary.substring(i*8, i*8+8);
+        }
         StringBuilder sb = new StringBuilder();
+        for ( int i = 0; i < ss.length; i++ ) {
+            sb.append( (char)Integer.parseInt( ss[i], 2 ) );
+        }
+        return sb.toString();
+        /*StringBuilder sb = new StringBuilder();
         for(int i = 0; i < binary.length()/8; i++) {
             sb.append((char)(Integer.parseInt(binary.substring(i*8,i*8+8),2)));
         }
-        return sb.toString();
+        return sb.toString();*/
     }
 }

@@ -44,5 +44,12 @@ public class Main {
         System.out.println("Zdekodowano:");
         System.out.println(w2);
 
+        String s = "witamwtiam";
+        String s2 = Conversions.toBinaryString(s);
+        String s3 = Conversions.toNormalCharacters(s2);
+        System.out.println(s);
+        System.out.println(s2);
+        System.out.println(s3);
+
     }
 }
