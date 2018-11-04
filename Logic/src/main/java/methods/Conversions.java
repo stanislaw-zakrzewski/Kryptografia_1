@@ -71,8 +71,8 @@ public class Conversions {
 
     public static String toNormalCharacters(String binary) {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < binary.length(); i+=8) {
-            sb.append((char)(Integer.parseInt(binary.substring(i,8),2)));
+        for(int i = 0; i < binary.length()/8; i++) {
+            sb.append((char)(Integer.parseInt(binary.substring(i*8,i*8+8),2)));
         }
         return sb.toString();
     }
