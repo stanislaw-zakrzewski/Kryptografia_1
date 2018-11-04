@@ -65,6 +65,7 @@ public class Conversions {
         return ret;
     }
 
+    //Przerabia ciąg znaków na ciąg binarny
     public static String toBinaryString(String message) {
         List<List<Byte>> pom = stringTo64Byte(message);
         StringBuilder sb = new StringBuilder();
@@ -72,6 +73,7 @@ public class Conversions {
         return sb.toString();
     }
 
+    //Przerabia ciąg binarny na ciag znaków
     public static String toNormalCharacters(String binary) {
         int pom = binary.length()/8;
         String[] ss = new String[pom];

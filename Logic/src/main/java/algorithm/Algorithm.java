@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Algorithm {
 
+    //Kodowanie trzykrotnym DESem
     public String encode3DES (String message, String key){
         Key k1 = new Key(key.substring(0, 8));
         Key k2 = new Key(key.substring(8, 16));
@@ -24,6 +25,7 @@ public class Algorithm {
         return s3;
     }
 
+    //Dekodowanie trzykrotnym DESem
     public String decode3DES(String message, String key) {
         Key k1 = new Key(key.substring(0, 8));
         Key k2 = new Key(key.substring(8, 16));
@@ -38,6 +40,7 @@ public class Algorithm {
         return w;
     }
 
+    //Kodowanie pojedyńczym DESem
     private String encode(String message, Key key) {
         List<List<Byte>> ret = new ArrayList<>();
         List<List<Byte>> pom1 = Conversions.encodedMessageTo64Byte(message);
@@ -51,6 +54,7 @@ public class Algorithm {
         return sb.toString();
     }
 
+    //Kodowanie 64-bitowego bloku danych
     private List<Byte> encode64(List<Byte> message, Key key) {
         List<Byte> ret = new ArrayList<>();
         List<Byte> pom1 = Permutation.IPPerm(message);
@@ -76,6 +80,7 @@ public class Algorithm {
         return ret;
     }
 
+    //Dekodowanie pojedyńczym DESem
     private String decode(String message, Key key) {
         List<List<Byte>> ret = new ArrayList<>();
         List<List<Byte>> pom1 = Conversions.encodedMessageTo64Byte(message);
@@ -89,6 +94,7 @@ public class Algorithm {
         return sb.toString();
     }
 
+    //Dekodowanie 64-bitowego bloku danych
     private List<Byte> decode64(List<Byte> message, Key key) {
         List<Byte> ret = new ArrayList<>();
         List<Byte> pom1 = Permutation.IPPerm(message);
