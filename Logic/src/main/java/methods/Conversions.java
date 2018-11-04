@@ -68,4 +68,12 @@ public class Conversions {
         pom.forEach(p -> p.forEach(sb::append));
         return sb.toString();
     }
+
+    public String toNormalCharacters(String binary) {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < binary.length(); i++) {
+            sb.append((char)(Integer.parseInt(binary.substring(i,8),2)));
+        }
+        return sb.toString();
+    }
 }
