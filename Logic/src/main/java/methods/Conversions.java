@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Conversions {
-    public static String byteToString() {
-        return "oko";
-    }
-
     //Funkcja zamienia string w listę elementów o jednakowej długości złożonych z 64 "bitów"
     public static List<List<Byte>> stringTo64Byte(String s) {
         byte[] bytes = s.getBytes();
