@@ -8,8 +8,10 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         Algorithm a = new Algorithm();
-        String dupa = "0000000100100011010001010110011110001001101010111100110111101111";
-        String key = "0001001100110100010101110111100110011011101111001101111111110001";
+        //String dupa = "0000000100100011010001010110011110001001101010111100110111101111";
+        //String key = "0001001100110100010101110111100110011011101111001101111111110001";
+        String dupa = "chujkurwa";
+        String key = "dupadupa";
 
         Key k = new Key(key);
 
@@ -18,9 +20,9 @@ public class Main {
         System.out.println(encoded);
         System.out.println();
 
-        System.out.println("How it should look:");
+        /*System.out.println("How it should look:");
         System.out.println("1000010111101000000100110101010000001111000010101011010000000101");
-        System.out.println("\n");
+        System.out.println("\n");*/
 
         System.out.println("Decoded:");
         String decoded = a.decode(encoded, k);

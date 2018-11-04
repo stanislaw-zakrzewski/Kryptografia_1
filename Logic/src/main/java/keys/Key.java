@@ -11,8 +11,8 @@ public class Key {
     private List<Byte> ki;
     public Key(String ki){
         List<List<Byte>> pom;
-        //pom = Conversions.stringTo64Byte(ki);
-        pom = Conversions.encodedMessageTo64Byte(ki);//todo
+        pom = Conversions.stringTo64Byte(ki);
+        //pom = Conversions.encodedMessageTo64Byte(ki);//todo
         this.ki = pom.get(0);
         //System.out.println(this.ki);
     }
