@@ -71,10 +71,11 @@ public class Algorithm {
         List<Byte> R = new ArrayList<>(pom1.subList(32,64));
         List<Byte> pomL = new ArrayList<>(L);
         List<Byte> pomR = new ArrayList<>(R);
+        ArrayList<List<Byte>> keys = key.keyTableForEveryRound();
 
         for(int i = 0; i < 16; i++) {
             R = new ArrayList<>(pomL);
-            L = new ArrayList<>(FunctionF.functionF(L,key.keyForPermutationI(15-i)));
+            L = new ArrayList<>(FunctionF.functionF(L,keys.get(15-i)));
             for(int j = 0; j < L.size(); j++) {
                 L.set(j, LogicOperators.xor(L.get(j), pomR.get(j)));
             }
@@ -83,6 +84,7 @@ public class Algorithm {
         }
         ret.addAll(L);
         ret.addAll(R);
+        ret = Permutacjon.FPPerm(ret);
         return ret;
     }
 }
