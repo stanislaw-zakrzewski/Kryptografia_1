@@ -61,4 +61,11 @@ public class Conversions {
         }
         return ret;
     }
+
+    public String toBinaryString(String message) {
+        List<List<Byte>> pom = stringTo64Byte(message);
+        StringBuilder sb = new StringBuilder();
+        pom.forEach(p -> p.forEach(sb::append));
+        return sb.toString();
+    }
 }
