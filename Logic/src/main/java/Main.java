@@ -36,9 +36,9 @@ public class Main {
 
         System.out.println("Sth");*/
 
-        String w1 = a.encode3DES("message","012345678901234567891234");
+        String w1 = a.encode3DES("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem.","012345678901234567891234");
         System.out.println("Zakodowano:");
-        System.out.println(w1);
+        System.out.println(Conversions.toNormalCharacters(w1));
 
         String w2 = a.decode3DES(w1, "012345678901234567891234");
         System.out.println("Zdekodowano:");
