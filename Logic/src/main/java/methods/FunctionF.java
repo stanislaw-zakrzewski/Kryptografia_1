@@ -7,8 +7,6 @@ import java.util.List;
 
 public class FunctionF {
     public static List<Byte> functionF(List<Byte> r, List<Byte> key) {
-        List<Byte> ret = new ArrayList<>();
-
         //1 permutacja z rozszerzeniem (tabela E)
         List<Byte> after1 = Permutacjon.EPerm(r);
 
@@ -34,8 +32,6 @@ public class FunctionF {
         }
 
         //5 poddanie permutacji P
-        ret = Permutacjon.PPerm(after4);
-
-        return ret;
+        return Permutacjon.PPerm(after4);
     }
 }
