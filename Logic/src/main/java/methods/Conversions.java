@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Conversions {
-    public static String byteToString() {
-        return "oko";
-    }
-
+    //Funkcja zamienia string w listę elementów o jednakowej długości złożonych z 64 "bitów"
     public static List<List<Byte>> stringTo64Byte(String s) {
         byte[] bytes = s.getBytes();
         List<Integer> pom3 = new ArrayList<>();
@@ -41,6 +38,7 @@ public class Conversions {
         return readyBytes;
     }
 
+    //Przekształca liczbę mniejszą niż 15 na jej bitową postać
     public static List<Byte> numberTo4Byte(byte number) {
         List<Byte> ret = new ArrayList<>();
         int val = number;
@@ -51,6 +49,7 @@ public class Conversions {
         return ret;
     }
 
+    //Przerabia gotowy ciąg binarny w postaci string na ciąg binarny w postaci listy jednakowych ciągów binarnych o długości 64
     public static List<List<Byte>> encodedMessageTo64Byte(String message) {
         List<List<Byte>> ret = new ArrayList<>();
         for(int i = 0; i < message.length()/64; i++) {
