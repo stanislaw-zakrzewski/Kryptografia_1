@@ -69,3 +69,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 kryptografia.Kryptografia_1.iml
 target/classes/DES.class
+Logic/Logic.iml
+View/View.iml
