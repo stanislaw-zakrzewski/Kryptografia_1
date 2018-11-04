@@ -14,7 +14,7 @@ public class Algorithm {
 
     public String encode(String message, Key key) {
         List<List<Byte>> ret = new ArrayList<>();
-        List<List<Byte>> pom1 = Conversions.stringTo64Byte(message);
+        List<List<Byte>> pom1 = Conversions.encodedMessageTo64Byte(message);
         //List<List<Byte>> pom1 = Conversions.encodedMessageTo64Byte(message);//todo
 
         for(List<Byte> lb : pom1) {
