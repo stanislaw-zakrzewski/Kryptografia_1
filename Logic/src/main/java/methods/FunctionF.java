@@ -8,7 +8,7 @@ import java.util.List;
 public class FunctionF {
     public static List<Byte> functionF(List<Byte> r, List<Byte> key) {
         //1 permutacja z rozszerzeniem (tabela E)
-        List<Byte> after1 = Permutacjon.EPerm(r);
+        List<Byte> after1 = Permutation.EPerm(r);
 
         //2 łączenie za pomocą sumy modulo 2 z 48 bitami przesuniętego i spermutowanego klucza
         List<Byte> after2 = new ArrayList<>();
@@ -32,6 +32,6 @@ public class FunctionF {
         }
 
         //5 poddanie permutacji P
-        return Permutacjon.PPerm(after4);
+        return Permutation.PPerm(after4);
     }
 }

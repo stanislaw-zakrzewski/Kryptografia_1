@@ -1,15 +1,15 @@
 package methods;
 
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Conversions {
+
     //Funkcja zamienia string w listę elementów o jednakowej długości złożonych z 64 "bitów"
     public static List<List<Byte>> stringTo64Byte(String s) {
         byte[] bytes = s.getBytes();
         List<Integer> pom3 = new ArrayList<>();
+
         for (byte b : bytes) {
             int val = b;
             for (int i = 0; i < 8; i++) {
@@ -22,6 +22,7 @@ public class Conversions {
         int pom1 = 0;
         int pom2 = 0;
         readyBytes.add(new ArrayList<>());
+
         for (int i : pom3) {
             if (pom1 == 64) {
                 pom2++;
@@ -73,19 +74,18 @@ public class Conversions {
 
     public static String toNormalCharacters(String binary) {
         int pom = binary.length()/8;
-        String[] ss = new String[pom];// binary.split( " " );
+        String[] ss = new String[pom];
+
         for(int i = 0; i < pom; i++) {
             ss[i] = binary.substring(i*8, i*8+8);
         }
+
         StringBuilder sb = new StringBuilder();
+
         for ( int i = 0; i < ss.length; i++ ) {
             sb.append( (char)Integer.parseInt( ss[i], 2 ) );
         }
+
         return sb.toString();
-        /*StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < binary.length()/8; i++) {
-            sb.append((char)(Integer.parseInt(binary.substring(i*8,i*8+8),2)));
-        }
-        return sb.toString();*/
     }
 }

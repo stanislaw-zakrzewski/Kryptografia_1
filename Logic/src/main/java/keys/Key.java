@@ -2,7 +2,7 @@ package keys;
 
 import data.Tables;
 import methods.Conversions;
-import methods.Permutacjon;
+import methods.Permutation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,50 +12,32 @@ public class Key {
     public Key(String ki){
         List<List<Byte>> pom;
         pom = Conversions.stringTo64Byte(ki);
-        //pom = Conversions.encodedMessageTo64Byte(ki);
         this.ki = pom.get(0);
-        //System.out.println(this.ki);
     }
-    /*public List<Byte> keyForPermutationI(int permutationNumber){
-        List<Byte> keyAfterPC1 = Permutacjon.PC1Perm(ki);
-        ArrayList<Byte> keyFirstHalf = new ArrayList<>(keyAfterPC1.subList(0,28));
-        ArrayList<Byte> keySecendHalf = new ArrayList<>(keyAfterPC1.subList(28,56));
-        for(int i = 0; i < Tables.R[permutationNumber];i++){
-            keyFirstHalf.remove(0);
-            keyFirstHalf.add((byte) 0);
-            keySecendHalf.remove(0);
-            keySecendHalf.add((byte)0);
-        }
-        //System.out.println(keyAfterPC1);
-        //System.out.println(keyFirstHalf + " + " + keySecendHalf);
-        keyFirstHalf.addAll(keySecendHalf);
-        //System.out.println(keyFirstHalf.size());
-        return Permutacjon.PC2Perm(keyFirstHalf);
-    }*/
+
     public ArrayList<List<Byte>> keyTableForEveryRound(){
-        ArrayList<List<Byte>> resoult = new ArrayList<>();
-        List<Byte> keyAfterPC1 = Permutacjon.PC1Perm(ki);
+        ArrayList<List<Byte>> result = new ArrayList<>();
+        List<Byte> keyAfterPC1 = Permutation.PC1Perm(ki);
         ArrayList<Byte> keyFirstHalf;
-        ArrayList<Byte> keySecendHalf;
+        ArrayList<Byte> keySecondHalf;
+
         for(int permutationNumber = 0; permutationNumber < 16 ; permutationNumber++){
-            //System.out.println(keyAfterPC1.size());
             keyFirstHalf = new ArrayList<>(keyAfterPC1.subList(0,28));
-            keySecendHalf = new ArrayList<>(keyAfterPC1.subList(28,56));
+            keySecondHalf = new ArrayList<>(keyAfterPC1.subList(28,56));
+
             for(int i = 0; i < Tables.R[permutationNumber];i++){
                 keyFirstHalf.remove(0);
                 keyFirstHalf.add((byte) 0);
-                keySecendHalf.remove(0);
-                keySecendHalf.add((byte) 0);
+                keySecondHalf.remove(0);
+                keySecondHalf.add((byte) 0);
             }
-            //System.out.println(keyAfterPC1);
-            //System.out.println(keyFirstHalf + " + " + keySecendHalf);
-            keyFirstHalf.addAll(keySecendHalf);
-            //System.out.println(keyFirstHalf.size());
-            resoult.add(Permutacjon.PC2Perm(keyFirstHalf));
+
+            keyFirstHalf.addAll(keySecondHalf);
+            result.add(Permutation.PC2Perm(keyFirstHalf));
             keyAfterPC1 = keyFirstHalf;
 
         }
-        return resoult;
+        return result;
     }
 
 
