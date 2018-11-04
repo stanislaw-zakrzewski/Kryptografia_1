@@ -50,4 +50,15 @@ public class Conversions {
         }
         return ret;
     }
+
+    public static List<List<Byte>> encodedMessageTo64Byte(String message) {
+        List<List<Byte>> ret = new ArrayList<>();
+        for(int i = 0; i < message.length()/64; i++) {
+            ret.add(new ArrayList<>());
+            for(int j = 0; j < 64; j++) {
+                ret.get(i).add(message.getBytes()[i*64+j]);
+            }
+        }
+        return ret;
+    }
 }
