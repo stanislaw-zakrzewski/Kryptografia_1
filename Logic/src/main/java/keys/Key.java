@@ -38,6 +38,7 @@ public class Key {
         ArrayList<Byte> keyFirstHalf;
         ArrayList<Byte> keySecendHalf;
         for(int permutationNumber = 0; permutationNumber < 16 ; permutationNumber++){
+            //System.out.println(keyAfterPC1.size());
             keyFirstHalf = new ArrayList(keyAfterPC1.subList(0,28));
             keySecendHalf = new ArrayList<>(keyAfterPC1.subList(28,56));
             for(int i = 0; i < Tables.R[permutationNumber];i++){
@@ -51,7 +52,7 @@ public class Key {
             keyFirstHalf.addAll(keySecendHalf);
             //System.out.println(keyFirstHalf.size());
             resoult.add(Permutacjon.PC2Perm(keyFirstHalf));
-            keyAfterPC1 = Permutacjon.PC2Perm(keyFirstHalf);
+            keyAfterPC1 = keyFirstHalf;
 
         }
         return resoult;
