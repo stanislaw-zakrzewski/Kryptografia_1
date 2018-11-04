@@ -32,5 +32,11 @@ public class Main {
         System.out.println("How it should look:");
         List<List<Byte>> oko = Conversions.stringTo64Byte(dupa);
         oko.forEach(o -> o.forEach(System.out::print));
+        System.out.println();
+
+        System.out.println("Sth");
+        try {
+            a.encode3DES("message","012345678901234567891234");
+        } catch (Exception e) {}
     }
 }
