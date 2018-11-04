@@ -56,7 +56,8 @@ public class Conversions {
         for(int i = 0; i < message.length()/64; i++) {
             ret.add(new ArrayList<>());
             for(int j = 0; j < 64; j++) {
-                ret.get(i).add(message.getBytes()[i*64+j]);
+                ret.get(i).add((byte)(message.getBytes()[i*64+j] == "1".getBytes()[0] ? 1 : 0));
+
             }
         }
         return ret;

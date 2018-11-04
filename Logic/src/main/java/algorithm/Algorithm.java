@@ -14,7 +14,8 @@ public class Algorithm {
 
     public String encode(String message, Key key) {
         List<List<Byte>> ret = new ArrayList<>();
-        List<List<Byte>> pom1 = Conversions.stringTo64Byte(message);
+        //List<List<Byte>> pom1 = Conversions.stringTo64Byte(message);
+        List<List<Byte>> pom1 = Conversions.encodedMessageTo64Byte(message);//todo
 
         for(List<Byte> lb : pom1) {
             ret.add(encode64(lb, key));
@@ -26,6 +27,7 @@ public class Algorithm {
     }
 
     private List<Byte> encode64(List<Byte> message, Key key) {
+
         List<Byte> ret = new ArrayList<>();
         List<Byte> pom1 = Permutacjon.IPPerm(message);
         List<Byte> L = new ArrayList<>(pom1.subList(0,32));
@@ -44,6 +46,7 @@ public class Algorithm {
         }
         ret.addAll(L);
         ret.addAll(R);
+
         return ret;
     }
 
