@@ -35,9 +35,11 @@ public class Algorithm {
         List<Byte> pomL = new ArrayList<>(L);
         List<Byte> pomR = new ArrayList<>(R);
 
+        List<List<Byte>> klycz = key.keyTableForEveryRound();
+
         for(int i = 0; i < 16; i++) {
             L = new ArrayList<>(pomR);
-            R = new ArrayList<>(FunctionF.functionF(R,key.keyForPermutationI(i)));
+            R = new ArrayList<>(FunctionF.functionF(R,klycz.get(i)));
             for(int j = 0; j < R.size(); j++) {
                 R.set(j, LogicOperators.xor(R.get(j), pomL.get(j)));
             }
