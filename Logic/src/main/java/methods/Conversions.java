@@ -45,7 +45,7 @@ public class Conversions {
         List<Byte> ret = new ArrayList<>();
         int val = number;
         for (int i = 0; i < 4; i++) {
-            ret.add((byte)((val & 16) == 0 ? 0 : 1));
+            ret.add((byte)((val & 8) == 0 ? 0 : 1));
             val <<= 1;
         }
         return ret;
