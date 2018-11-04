@@ -1,5 +1,6 @@
 package algorithm;
 
+import keys.Key;
 import methods.Conversions;
 import methods.FunctionF;
 import methods.LogicOperators;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class Algorithm {
 
-    public String encode(String message, List<Byte> key) {
+    public String encode(String message, Key key) {
         List<List<Byte>> ret = new ArrayList<>();
         List<List<Byte>> pom1 = Conversions.stringTo64Byte(message);
 
@@ -20,26 +21,26 @@ public class Algorithm {
         }
 
         StringBuilder sb = new StringBuilder();
-        ret.forEach(r -> r.forEach(rr -> sb.append(r)));
+        ret.forEach(r -> r.forEach(rr -> sb.append(rr == 1 ? "1" : "0")));
         return sb.toString();
     }
 
-    private List<Byte> encode64(List<Byte> message, List<Byte> key) {
+    private List<Byte> encode64(List<Byte> message, Key key) {
         List<Byte> ret = new ArrayList<>();
         List<Byte> pom1 = Permutacjon.IPPerm(message);
-        List<Byte> L = pom1.subList(0,32);
-        List<Byte> R = pom1.subList(32,64);
-        List<Byte> pomL = L;
-        List<Byte> pomR = R;
+        List<Byte> L = new ArrayList<>(pom1.subList(0,32));
+        List<Byte> R = new ArrayList<>(pom1.subList(32,64));
+        List<Byte> pomL = new ArrayList<>(L);
+        List<Byte> pomR = new ArrayList<>(R);
 
         for(int i = 0; i < 16; i++) {
-            L = pomR;
-            R = FunctionF.functionF(R,key);
-            for(int j = 0; j < 32; j++) {
-                R.set(j, LogicOperators.xor(R.get(i), pomL.get(i)));
+            L = new ArrayList<>(pomR);
+            R = new ArrayList<>(FunctionF.functionF(R,key.keyForPermutationI(i)));
+            for(int j = 0; j < R.size(); j++) {
+                R.set(j, LogicOperators.xor(R.get(j), pomL.get(j)));
             }
-            pomL = L;
-            pomR = R;
+            pomL = new ArrayList<>(L);
+            pomR = new ArrayList<>(R);
         }
         ret.addAll(L);
         ret.addAll(R);

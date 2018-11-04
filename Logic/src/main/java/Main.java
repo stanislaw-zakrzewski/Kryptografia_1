@@ -1,36 +1,23 @@
 
+import algorithm.Algorithm;
+import keys.Key;
 import methods.Conversions;
-import methods.FunctionF;
-import methods.Permutacjon;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Helloo");
-        String dupa = "dupaapud";
-        List<List<Byte>> b = Conversions.stringTo64Byte(dupa);
-        b.forEach(I -> {I.forEach(System.out::print); System.out.println();});
-
-        List<Byte> bb = b.get(0);
-
-        List<Byte> gotwe = Permutacjon.IPPerm(bb);
-
-        gotwe.forEach(System.out::print);
+        String dupa = "aaaaaaaa";
 
 
-        List<Byte> test1 = new ArrayList<>();
-        List<Byte> test2 = new ArrayList<>();
+        Algorithm a = new Algorithm();
+        String key = "dddddddupa";
+        String message = "Witam serdecznie";
 
-        for (int i=0;i<32;i++) {
-            test1.add(bb.get(i));
-        }
-        for (int i=0;i<48;i++) {
-            test2.add(bb.get(i));
-        }
+        System.out.println(a.encode(dupa, new Key(key)));
 
-        FunctionF f = new FunctionF();
-        f.functionF(test1,test2);
+        List<List<Byte>> oko = Conversions.stringTo64Byte(dupa);
+        oko.forEach(o -> o.forEach(System.out::print));
     }
 }

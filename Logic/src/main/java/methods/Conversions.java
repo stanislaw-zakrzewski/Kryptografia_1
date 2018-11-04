@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Conversions {
+    public static String byteToString() {
+        return "oko";
+    }
+
     public static List<List<Byte>> stringTo64Byte(String s) {
         byte[] bytes = s.getBytes();
         List<Integer> pom3 = new ArrayList<>();
