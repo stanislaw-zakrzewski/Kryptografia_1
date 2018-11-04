@@ -12,23 +12,35 @@ import java.util.List;
 
 public class Algorithm {
 
-    public String encode3DES (String message, String key) throws Exception{
-        String a = "";
-        if (key.length() != 192) throw new Exception("Wrong key length");
+    public String encode3DES (String message, String key){
+
         Key k1 = new Key(key.substring(0, 8));
         Key k2 = new Key(key.substring(8, 16));
         Key k3 = new Key(key.substring(16, 24));
 
-        String s1, s2, s3;
-        s1 = encode(message, k1);
+        String s1, s2, s3, w;
+        w = Conversions.toBinaryString(message);
+        s1 = encode(w, k1);
         s2 = decode(s1, k2);
         s3 = encode(s2, k3);
-
-        return s3;
+        w = Conversions.toNormalCharacters(s3);
+        return w;
     }
 
+    public String decode3DES(String message, String key) {
 
+        Key k1 = new Key(key.substring(0, 8));
+        Key k2 = new Key(key.substring(8, 16));
+        Key k3 = new Key(key.substring(16, 24));
 
+        String s1, s2, s3, w;
+        w = Conversions.toBinaryString(message);
+        s1 = decode(w, k1);
+        s2 = encode(s1, k2);
+        s3 = decode(s2, k3);
+        w = Conversions.toNormalCharacters(s3);
+        return w;
+    }
 
     public String encode(String message, Key key) {
         List<List<Byte>> ret = new ArrayList<>();
