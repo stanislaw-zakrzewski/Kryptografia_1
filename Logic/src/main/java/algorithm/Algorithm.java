@@ -34,10 +34,11 @@ public class Algorithm {
         List<Byte> R = new ArrayList<>(pom1.subList(32,64));
         List<Byte> pomL = new ArrayList<>(L);
         List<Byte> pomR = new ArrayList<>(R);
+        ArrayList<List<Byte>> keys = key.keyTableForEveryRound();
 
         for(int i = 0; i < 16; i++) {
             L = new ArrayList<>(pomR);
-            R = new ArrayList<>(FunctionF.functionF(R,key.keyForPermutationI(i)));
+            R = new ArrayList<>(FunctionF.functionF(R,keys.get(i)));
             for(int j = 0; j < R.size(); j++) {
                 R.set(j, LogicOperators.xor(R.get(j), pomL.get(j)));
             }
