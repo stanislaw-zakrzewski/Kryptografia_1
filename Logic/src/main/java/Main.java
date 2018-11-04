@@ -19,7 +19,7 @@ public class Main {
         System.out.println();
 
         System.out.println("How it should look:");
-        System.out.println("1000010111101001000100110101010000001111000010101011010000000101");
+        System.out.println("1000010111101000000100110101010000001111000010101011010000000101");
         System.out.println("\n");
 
         System.out.println("Decoded:");
