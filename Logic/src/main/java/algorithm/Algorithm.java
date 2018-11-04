@@ -23,8 +23,7 @@ public class Algorithm {
         s1 = encode(w, k1);
         s2 = decode(s1, k2);
         s3 = encode(s2, k3);
-        w = Conversions.toNormalCharacters(s3);
-        return w;
+        return s3;
     }
 
     public String decode3DES(String message, String key) {
@@ -34,10 +33,10 @@ public class Algorithm {
         Key k3 = new Key(key.substring(16, 24));
 
         String s1, s2, s3, w;
-        w = Conversions.toBinaryString(message);
-        s1 = decode(w, k1);
+        w = message;
+        s1 = decode(w, k3);
         s2 = encode(s1, k2);
-        s3 = decode(s2, k3);
+        s3 = decode(s2, k1);
         w = Conversions.toNormalCharacters(s3);
         return w;
     }
