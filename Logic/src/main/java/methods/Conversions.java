@@ -62,16 +62,16 @@ public class Conversions {
         return ret;
     }
 
-    public String toBinaryString(String message) {
+    public static String toBinaryString(String message) {
         List<List<Byte>> pom = stringTo64Byte(message);
         StringBuilder sb = new StringBuilder();
         pom.forEach(p -> p.forEach(sb::append));
         return sb.toString();
     }
 
-    public String toNormalCharacters(String binary) {
+    public static String toNormalCharacters(String binary) {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < binary.length(); i++) {
+        for(int i = 0; i < binary.length(); i+=8) {
             sb.append((char)(Integer.parseInt(binary.substring(i,8),2)));
         }
         return sb.toString();
