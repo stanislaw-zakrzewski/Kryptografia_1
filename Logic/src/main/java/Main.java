@@ -1,4 +1,5 @@
 import algorithm.Algorithm;
+import keys.GenerateKey;
 import methods.Conversions;
 
 import java.io.File;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder();
+        /*StringBuilder sb = new StringBuilder();
         try {
             byte[] bytes = Files.readAllBytes(new File("oko.pdf").toPath());
             for(Byte b : bytes) {
@@ -39,6 +40,9 @@ public class Main {
         List<Byte> decoded = a.decode3DES(encoded, "ffffffff11111111dddddddd22222222aaaaaaaa77777777");
         for(byte b : decoded) {
             System.out.print(b);
-        }
+        }*/
+
+        GenerateKey k = new GenerateKey();
+        System.out.println(k.getRandomKey());
     }
 }
