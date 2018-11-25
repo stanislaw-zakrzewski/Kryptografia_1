@@ -24,6 +24,7 @@ public class Controller {
     private File file;
     private SaveToFile saveToFile;
     private GenerateKey generateKey;
+    private String end;
 
     @FXML
     public TextArea key, messages;
@@ -44,6 +45,14 @@ public class Controller {
             file = fc.getSelectedFile();
             messages.setText("press encode code file");
             encode.setDisable(false);
+            String s = file.getName();
+            System.out.println(s);
+            char[] pom = s.toCharArray();
+            int pom2 = pom.length-1;
+            while (pom[pom2] != '.') {
+                pom2--;
+            }
+            end = s.substring(pom2);
         }
     }
 
@@ -81,7 +90,7 @@ public class Controller {
             for(byte b : decoded) {
                 System.out.print(b);
             }*/
-            saveToFile.save("oko2.png", decoded, algorithm.toRemoveBytes);
+            saveToFile.save("decode" + end, decoded, algorithm.toRemoveBytes);
             messages.setText("your file has been successfully decoded");
             decode.setDisable(true);
         }
