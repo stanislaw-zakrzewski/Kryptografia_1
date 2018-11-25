@@ -7,7 +7,7 @@ public class GenerateKey {
         Random rng = new Random();
         String key = "";
         int num;
-        for (int i = 0; i < 17; i++) {
+        for (int i = 0; i < 48; i++) {
             num = rng.nextInt(16);
             switch (num) {
                 case 10:
