@@ -69,7 +69,7 @@ public class Controller {
     public void pressDecode(ActionEvent event) {
         if(encode != null) {
             decoded = algorithm.decode3DES(encoded, key.getText());
-            saveToFile.save("", decoded);
+            saveToFile.save("oko2.txt", decoded);
             messages.setText("your file has been successfully decoded");
         }
     }

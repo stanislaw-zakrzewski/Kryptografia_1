@@ -2,6 +2,7 @@ package data;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SaveToFile {
@@ -21,9 +22,25 @@ public class SaveToFile {
     }
 
     private byte[] makeTableFromList(List<Byte> list) {
-        byte[] ret = new byte[list.size()];
-        for (int i=0;i<list.size();i++) {
-            ret[i] = list.get(i);
+        List<Byte> l2 = new ArrayList<>();
+
+
+        for (int i=0;i<list.size();i+=8) {
+            l2.add(getOneByte(list,i));
+        }
+
+
+        byte[] ret = new byte[l2.size()];
+        for (int i=0;i<l2.size();i++) {
+            ret[i] = l2.get(i);
+        }
+        return ret;
+    }
+
+    private byte getOneByte(List<Byte> list, int offset) {
+        byte ret = 0;
+        for (int i = offset; (i<list.size() && ((i+offset) < 8)); i++) {
+            ret += (list.get(i) == 0) ? (1<<i) : 0;
         }
         return ret;
     }
