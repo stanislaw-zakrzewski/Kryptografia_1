@@ -76,7 +76,7 @@ public class Controller {
             for(byte b : decoded) {
                 System.out.print(b);
             }
-            saveToFile.save("oko2.pdf", decoded, algorithm.toRemoveBytes);
+            saveToFile.save("oko2.txt", decoded, algorithm.toRemoveBytes);
             messages.setText("your file has been successfully decoded");
         }
     }

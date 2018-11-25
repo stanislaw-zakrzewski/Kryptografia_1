@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Conversions {
     public static int cropValue;
+    public static boolean cropIsSet = false;
 
     //Funkcja zamienia string w listę elementów o jednakowej długości złożonych z 64 "bitów"
     public static List<List<Byte>> stringTo64Byte(String s) {
@@ -57,7 +58,7 @@ public class Conversions {
         List<Byte> ret = new ArrayList<>();
         int val = number;
         for (int i = 0; i < 8; i++) {
-            ret.add((byte)((val & 8) == 0 ? 0 : 1));
+            ret.add((byte)((val & 128) == 0 ? 0 : 1));
             val <<= 1;
         }
         return ret;
@@ -70,9 +71,12 @@ public class Conversions {
         if(message.size()%64!= 0) {
             size +=1;
         }
-        cropValue = 64-message.size()%64;
-        if(cropValue == 64) {
-            cropValue = 0;
+        if(!cropIsSet) {
+            cropValue = 64 - message.size() % 64;
+            if (cropValue == 64) {
+                cropValue = 0;
+            }
+            cropIsSet = true;
         }
         for(int i = 0; i < size; i++) {
             ret.add(new ArrayList<>());

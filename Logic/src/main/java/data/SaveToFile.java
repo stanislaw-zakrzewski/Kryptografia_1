@@ -19,10 +19,10 @@ public class SaveToFile {
         for(byte b : pom) {
             System.out.print(b);
         }
+        System.out.println();
         for(int i = 0; i < toRemoveBytes; i++) {
             pom.remove(pom.size()-1);
         }
-        System.out.println();
         System.out.println("Save to file ponizej");
         for(byte b : pom) {
             System.out.print(b);
