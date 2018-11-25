@@ -21,11 +21,9 @@ public class SaveToFile {
     }
 
     private byte[] makeTableFromList(List<Byte> list) {
-        Byte[] array = new Byte[list.size()];
-        array = (Byte[])list.toArray();
-        byte[] ret = new byte[array.length];
-        for (int i=0;i<array.length;i++) {
-            ret[i] = array[i];
+        byte[] ret = new byte[list.size()];
+        for (int i=0;i<list.size();i++) {
+            ret[i] = list.get(i);
         }
         return ret;
     }
