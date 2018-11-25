@@ -79,6 +79,7 @@ public class Controller {
             }*/
             saveToFile.save("oko2.png", decoded, algorithm.toRemoveBytes);
             messages.setText("your file has been successfully decoded");
+            decode.setDisable(true);
         }
     }
 
