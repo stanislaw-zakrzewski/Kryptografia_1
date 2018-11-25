@@ -46,7 +46,6 @@ public class Controller {
             messages.setText("press encode code file");
             encode.setDisable(false);
             String s = file.getName();
-            System.out.println(s);
             char[] pom = s.toCharArray();
             int pom2 = pom.length-1;
             while (pom[pom2] != '.') {
@@ -57,7 +56,6 @@ public class Controller {
     }
 
     public void pressEncode(ActionEvent event) {
-        System.out.println(key.getText().length());
         if(file != null && key.getText().length() == 48) {
             encode.setDisable(true);
             List<Byte> list = new ArrayList<>();
