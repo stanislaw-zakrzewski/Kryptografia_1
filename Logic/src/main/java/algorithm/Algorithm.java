@@ -11,21 +11,31 @@ import java.util.List;
 
 public class Algorithm {
 
-    //Kodowanie trzykrotnym DESem
-    public String encode3DES (String message, String key){
-        Key k1 = new Key(key.substring(0, 8));
-        Key k2 = new Key(key.substring(8, 16));
-        Key k3 = new Key(key.substring(16, 24));
 
-        String s1, s2, s3, w;
-        w = Conversions.toBinaryString(message);
-        s1 = encode(w, k1);
-        s2 = decode(s1, k2);
-        s3 = encode(s2, k3);
-        return s3;
+    /**
+     * Kodowanie trzykrotnym DESem
+     *
+     * @param message - ciag binarny
+     * @param key  - klucz w formie 48 znakow kodowania szesnastkowego
+     * @return - zakodowany ciag binarny w postaci string
+     */
+    public String encode3DES (String message, String key){
+        Key k1 = new Key(key.substring(0, 8)); //TODO
+        Key k2 = new Key(key.substring(8, 16)); //TODO
+        Key k3 = new Key(key.substring(16, 24)); //TODO
+
+        String encode1 = encode(message, k1);
+        String decode1 = decode(encode1, k2);
+        return encode(decode1, k3);
     }
 
-    //Dekodowanie trzykrotnym DESem
+    /**
+     * Dekodowanie trzykrotnym DESem
+     *
+     * @param message
+     * @param key
+     * @return
+     */
     public String decode3DES(String message, String key) {
         Key k1 = new Key(key.substring(0, 8));
         Key k2 = new Key(key.substring(8, 16));
@@ -40,7 +50,13 @@ public class Algorithm {
         return w;
     }
 
-    //Kodowanie pojedyńczym DESem
+    /**
+     * Kodowanie pojedyńczym DESem
+     *
+     * @param message - ciag binarny
+     * @param key - klucz 16 znakow w kodowaniu hexadecymalnym
+     * @return - zakodowany ciag binarny przy pomocy podanego klucza
+     */
     private String encode(String message, Key key) {
         List<List<Byte>> ret = new ArrayList<>();
         List<List<Byte>> pom1 = Conversions.encodedMessageTo64Byte(message);
@@ -54,7 +70,13 @@ public class Algorithm {
         return sb.toString();
     }
 
-    //Kodowanie 64-bitowego bloku danych
+    /**
+     * Kodowanie 64-bitowego bloku danych
+     *
+     * @param message - 64 bity
+     * @param key - 16 znakow kodowanych w systemie hexadecymalnym
+     * @return - zakodowane 64 bity przy pomocy podanego klucza
+     */
     private List<Byte> encode64(List<Byte> message, Key key) {
         List<Byte> ret = new ArrayList<>();
         List<Byte> pom1 = Permutation.IPPerm(message);
