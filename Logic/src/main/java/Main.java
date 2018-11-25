@@ -4,6 +4,7 @@ import methods.Conversions;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -22,8 +23,22 @@ public class Main {
         }
         System.out.println(sb.toString());
         Algorithm a = new Algorithm();
-        String encoded = a.encode3DES(sb.toString(),"qwertyuioppoiuytrewqasdf");
-        String decoded = a.decode3DES(encoded, "qwertyuioppoiuytrewqasdf");
-        System.out.println(decoded);
+
+        List<Byte> list = new ArrayList<>();
+        String s = sb.toString();
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == '1') {
+                list.add((byte) 1);
+            } else {
+                list.add((byte) 0);
+            }
+        }
+
+        List<Byte> encoded = a.encode3DES(list,"qwertyuioppoiuytrewqasdf");
+        //TODO binarka do filea
+        List<Byte> decoded = a.decode3DES(encoded, "qwertyuioppoiuytrewqasdf");
+        for(byte b : decoded) {
+            System.out.print(b);
+        }
     }
 }
