@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Algorithm {
+    public int toRemoveBytes;
 
 
     /**
@@ -24,7 +25,9 @@ public class Algorithm {
         Key k2 = new Key(key.substring(16, 32)); //TODO
         Key k3 = new Key(key.substring(32, 48)); //TODO
 
+        System.out.println(message.size());
         List<Byte> encode = encode(message, k1);
+        System.out.println(encode.size());
         List<Byte> decode = decode(encode, k2);
         return encode(decode, k3);
     }
@@ -56,7 +59,7 @@ public class Algorithm {
     private List<Byte> encode(List<Byte> message, Key key) {
         List<List<Byte>> ret = new ArrayList<>();
         List<List<Byte>> pom1 = Conversions.encodedMessageTo64Byte(message);
-
+        toRemoveBytes = Conversions.cropValue;
         for(List<Byte> lb : pom1) {
             ret.add(encode64(lb, key));
         }

@@ -12,7 +12,10 @@ public class SaveToFile {
      * @param path - Scieżka do pliku (miejsca na dysku)
      * @param message - Lista bitów do zapisania
      */
-    public void save(String path, List<Byte> message){
+    public void save(String path, List<Byte> message, int toRemoveBytes){
+        for(int i = 0; i < toRemoveBytes; i++) {
+            message.remove(message.size()-1);
+        }
         try (FileOutputStream fileOutputStream = new FileOutputStream(path)) {
             fileOutputStream.write(makeTableFromList(message));
         } catch (IOException e) {
@@ -29,7 +32,7 @@ public class SaveToFile {
             l2.add(getOneByte(list,i));
         }
 
-
+        System.out.println(l2.size());
         byte[] ret = new byte[l2.size()];
         for (int i=0;i<l2.size();i++) {
             ret[i] = l2.get(i);

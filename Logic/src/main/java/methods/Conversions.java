@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Conversions {
+    public static int cropValue;
 
     //Funkcja zamienia string w listę elementów o jednakowej długości złożonych z 64 "bitów"
     public static List<List<Byte>> stringTo64Byte(String s) {
@@ -65,10 +66,22 @@ public class Conversions {
     //Przerabia gotowy ciąg binarny w postaci string na ciąg binarny w postaci listy jednakowych ciągów binarnych o długości 64
     public static List<List<Byte>> encodedMessageTo64Byte(List<Byte> message) {
         List<List<Byte>> ret = new ArrayList<>();
-        for(int i = 0; i < message.size()/64; i++) {
+        int size = message.size()/64;
+        if(message.size()%64!= 0) {
+            size +=1;
+        }
+        cropValue = 64-message.size()%64;
+        if(cropValue == 64) {
+            cropValue = 0;
+        }
+        for(int i = 0; i < size; i++) {
             ret.add(new ArrayList<>());
             for(int j = 0; j < 64; j++) {
-                ret.get(i).add(message.get(i*64+j));
+                if(i*64+j >= message.size()) {
+                    ret.get(i).add((byte)0);
+                } else {
+                    ret.get(i).add(message.get(i * 64 + j));
+                }
             }
         }
         return ret;

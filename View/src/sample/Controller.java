@@ -57,7 +57,6 @@ public class Controller {
                 e.printStackTrace();
             }
             encoded = algorithm.encode3DES(list, key.getText());
-
             messages.setText("press decode to decode file");
             browse.setDisable(true);
             randomKey.setDisable(true);
@@ -69,7 +68,7 @@ public class Controller {
     public void pressDecode(ActionEvent event) {
         if(encode != null) {
             decoded = algorithm.decode3DES(encoded, key.getText());
-            saveToFile.save("oko2.txt", decoded);
+            saveToFile.save("oko2.pdf", decoded, algorithm.toRemoveBytes);
             messages.setText("your file has been successfully decoded");
         }
     }
