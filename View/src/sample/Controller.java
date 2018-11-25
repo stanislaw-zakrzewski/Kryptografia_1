@@ -46,6 +46,7 @@ public class Controller {
 
     public void pressEncode(ActionEvent event) {
         if(file != null && key.getText().length() == 48) {
+            encode.setDisable(true);
             List<Byte> list = new ArrayList<>();
             try {
                 byte[] bytes = Files.readAllBytes(file.toPath());
