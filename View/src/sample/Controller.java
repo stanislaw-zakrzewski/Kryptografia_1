@@ -1,20 +1,27 @@
 package sample;
 
 import algorithm.Algorithm;
+import data.SaveToFile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import methods.Conversions;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Controller {
-    private String message;
-    private String codedMessage;
-    private String keyString;
+    private List<Byte> encoded;
+    private List<Byte> decoded;
     private Algorithm algorithm;
     private File file;
+    private SaveToFile saveToFile;
 
     @FXML
     public TextArea key, messages;
@@ -23,29 +30,48 @@ public class Controller {
 
     public Controller() {
         algorithm = new Algorithm();
+        saveToFile = new SaveToFile();
     }
 
     public void pressBrowse(ActionEvent event) {
+
         JFileChooser fc = new JFileChooser();
         int returnVal = fc.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             file = fc.getSelectedFile();
             messages.setText("press encode code file");
+            encode.setDisable(false);
         }
-        browse.setDisable(true);
-        randomKey.setDisable(true);
-        key.setDisable(true);
-        encode.setDisable(false);
-
     }
 
     public void pressEncode(ActionEvent event) {
-        messages.setText("press decode to decode file");
-        decode.setDisable(false);
+        if(file != null && key.getText().length() == 48) {
+            List<Byte> list = new ArrayList<>();
+            try {
+                byte[] bytes = Files.readAllBytes(file.toPath());
+                for(Byte b : bytes) {
+                    List<Byte> pom = Conversions.numberTo8Byte(b);
+                    list.addAll(pom);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            encoded = algorithm.encode3DES(list, key.getText());
+
+            messages.setText("press decode to decode file");
+            browse.setDisable(true);
+            randomKey.setDisable(true);
+            key.setDisable(true);
+            decode.setDisable(false);
+        }
     }
 
     public void pressDecode(ActionEvent event) {
-        messages.setText("your file has been successfully decoded");
+        if(encode != null) {
+            decoded = algorithm.decode3DES(encoded, key.getText());
+            saveToFile.save("", decoded);
+            messages.setText("your file has been successfully decoded");
+        }
     }
 
     public void pressRandomKey(ActionEvent event) {
