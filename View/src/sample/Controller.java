@@ -40,12 +40,12 @@ public class Controller {
 
     public void pressBrowse(ActionEvent event) {
 
-        JFileChooser fc = new JFileChooser();
+        JFileChooser fc = new JFileChooser(new File("").getAbsolutePath());
         int returnVal = fc.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             file = fc.getSelectedFile();
             selectedFile.setText("Selected File: " + file.getPath());
-            messages.setText("press encode code file");
+            messages.setText("File succesfuly loaded.");
             String s = file.getName();
             char[] pom = s.toCharArray();
             int pom2 = pom.length-1;
@@ -58,20 +58,22 @@ public class Controller {
 
     public void pressEncode(ActionEvent event) {
         if(file != null && key.getText().length() == 48) {
-
+            encode.setDisable(true);
             encoded = algorithm.encode3DES(getBytesFromFile(), key.getText());
-            messages.setText("press decode to decode file");
             saveToFile.save("encode" + end, encoded, 0);
+            messages.setText("File has been encoded.");
+            encode.setDisable(false);
         }
     }
 
     public void pressDecode(ActionEvent event) {
-
-
-
+        if(file != null && key.getText().length() == 48) {
+            decode.setDisable(true);
             decoded = algorithm.decode3DES(getBytesFromFile(), key.getText());
             saveToFile.save("decode" + end, decoded, 0);
-            messages.setText("your file has been successfully decoded");
+            messages.setText("File has been successfully decoded.");
+            decode.setDisable(false);
+        }
     }
 
     private List<Byte> getBytesFromFile() {
