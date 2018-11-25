@@ -29,7 +29,7 @@ public class GenerateKey {
                     key += 'F';
                     break;
                 default:
-                    key+=String.valueOf(i);
+                    key+=String.valueOf(num);
                     break;
             }
         }
