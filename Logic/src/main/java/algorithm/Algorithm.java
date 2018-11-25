@@ -25,9 +25,7 @@ public class Algorithm {
         Key k2 = new Key(key.substring(16, 32)); //TODO
         Key k3 = new Key(key.substring(32, 48)); //TODO
 
-        System.out.println(message.size());
         List<Byte> encode = encode(message, k1);
-        System.out.println(encode.size());
         List<Byte> decode = decode(encode, k2);
         return encode(decode, k3);
     }

@@ -13,11 +13,22 @@ public class SaveToFile {
      * @param message - Lista bitów do zapisania
      */
     public void save(String path, List<Byte> message, int toRemoveBytes){
+        List<Byte> pom = message;
+        System.out.println();
+        System.out.println("Save to file przed ponizej");
+        for(byte b : pom) {
+            System.out.print(b);
+        }
         for(int i = 0; i < toRemoveBytes; i++) {
-            message.remove(message.size()-1);
+            pom.remove(pom.size()-1);
+        }
+        System.out.println();
+        System.out.println("Save to file ponizej");
+        for(byte b : pom) {
+            System.out.print(b);
         }
         try (FileOutputStream fileOutputStream = new FileOutputStream(path)) {
-            fileOutputStream.write(makeTableFromList(message));
+            fileOutputStream.write(makeTableFromList(pom));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,7 +43,6 @@ public class SaveToFile {
             l2.add(getOneByte(list,i));
         }
 
-        System.out.println(l2.size());
         byte[] ret = new byte[l2.size()];
         for (int i=0;i<l2.size();i++) {
             ret[i] = l2.get(i);

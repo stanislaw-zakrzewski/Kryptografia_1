@@ -56,6 +56,9 @@ public class Controller {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            for(byte b : list) {
+                System.out.print(b);
+            }
             encoded = algorithm.encode3DES(list, key.getText());
             messages.setText("press decode to decode file");
             browse.setDisable(true);
@@ -68,6 +71,11 @@ public class Controller {
     public void pressDecode(ActionEvent event) {
         if(encode != null) {
             decoded = algorithm.decode3DES(encoded, key.getText());
+            System.out.println();
+            System.out.println("Decode ponizej");
+            for(byte b : decoded) {
+                System.out.print(b);
+            }
             saveToFile.save("oko2.pdf", decoded, algorithm.toRemoveBytes);
             messages.setText("your file has been successfully decoded");
         }
