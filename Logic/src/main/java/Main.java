@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String s = "";
         StringBuilder sb = new StringBuilder();
         try {
             byte[] bytes = Files.readAllBytes(new File("oko.pdf").toPath());

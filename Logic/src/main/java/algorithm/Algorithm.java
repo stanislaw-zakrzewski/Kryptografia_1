@@ -16,38 +16,34 @@ public class Algorithm {
      * Kodowanie trzykrotnym DESem
      *
      * @param message - ciag binarny
-     * @param key  - klucz w formie 48 znakow kodowania szesnastkowego
+     * @param key  - klucz w formie 48 znakow kodowania hexadecymalnego
      * @return - zakodowany ciag binarny w postaci string
      */
-    public String encode3DES (String message, String key){
+    public List<Byte> encode3DES (List<Byte> message, String key){
         Key k1 = new Key(key.substring(0, 8)); //TODO
         Key k2 = new Key(key.substring(8, 16)); //TODO
         Key k3 = new Key(key.substring(16, 24)); //TODO
 
-        String encode1 = encode(message, k1);
-        String decode1 = decode(encode1, k2);
-        return encode(decode1, k3);
+        List<Byte> encode = encode(message, k1);
+        List<Byte> decode = decode(encode, k2);
+        return encode(decode, k3);
     }
 
     /**
      * Dekodowanie trzykrotnym DESem
      *
-     * @param message
-     * @param key
-     * @return
+     * @param message - ciag binarny
+     * @param key - klucz w formnie 48znakow kodowania hexadecymalnego
+     * @return - zwracana odkodowana wiadomosc w ciagu binarnym
      */
-    public String decode3DES(String message, String key) {
-        Key k1 = new Key(key.substring(0, 8));
-        Key k2 = new Key(key.substring(8, 16));
-        Key k3 = new Key(key.substring(16, 24));
+    public List<Byte> decode3DES(List<Byte> message, String key) {
+        Key k1 = new Key(key.substring(0, 8)); //TODO
+        Key k2 = new Key(key.substring(8, 16)); //TODO
+        Key k3 = new Key(key.substring(16, 24)); //TODO
 
-        String s1, s2, s3, w;
-        w = message;
-        s1 = decode(w, k3);
-        s2 = encode(s1, k2);
-        s3 = decode(s2, k1);
-        w = Conversions.toNormalCharacters(s3);
-        return w;
+        List<Byte> decode = decode(message, k3);
+        List<Byte> encode = encode(decode, k2);
+        return decode(encode, k1);
     }
 
     /**
@@ -57,17 +53,18 @@ public class Algorithm {
      * @param key - klucz 16 znakow w kodowaniu hexadecymalnym
      * @return - zakodowany ciag binarny przy pomocy podanego klucza
      */
-    private String encode(String message, Key key) {
+    private List<Byte> encode(List<Byte> message, Key key) {
         List<List<Byte>> ret = new ArrayList<>();
         List<List<Byte>> pom1 = Conversions.encodedMessageTo64Byte(message);
 
         for(List<Byte> lb : pom1) {
             ret.add(encode64(lb, key));
         }
-
-        StringBuilder sb = new StringBuilder();
-        ret.forEach(r -> r.forEach(rr -> sb.append(rr == 1 ? "1" : "0")));
-        return sb.toString();
+        List<Byte> pom  = new ArrayList<>();
+        for(List<Byte> b : ret) {
+            pom.addAll(b);
+        }
+        return pom;
     }
 
     /**
@@ -102,21 +99,34 @@ public class Algorithm {
         return ret;
     }
 
-    //Dekodowanie pojedyńczym DESem
-    private String decode(String message, Key key) {
+    /**
+     * Dekodowanie pojedyńczym DESem
+     *
+     * @param message - ciag binarny
+     * @param key - klucz w formie 16hexow
+     * @return - ciag binarny
+     */
+    private List<Byte> decode(List<Byte> message, Key key) {
         List<List<Byte>> ret = new ArrayList<>();
         List<List<Byte>> pom1 = Conversions.encodedMessageTo64Byte(message);
 
         for(List<Byte> lb : pom1) {
             ret.add(decode64(lb, key));
         }
-
-        StringBuilder sb = new StringBuilder();
-        ret.forEach(r -> r.forEach(rr -> sb.append(rr == 1 ? "1" : "0")));
-        return sb.toString();
+        List<Byte> pom  = new ArrayList<>();
+        for(List<Byte> b : ret) {
+            pom.addAll(b);
+        }
+        return pom;
     }
 
-    //Dekodowanie 64-bitowego bloku danych
+    /**
+     * Dekodowanie 64-bitowego bloku danych
+     *
+     * @param message - ciag binaryny
+     * @param key - klucz 16 hexow
+     * @return - ciag binarny
+     */
     private List<Byte> decode64(List<Byte> message, Key key) {
         List<Byte> ret = new ArrayList<>();
         List<Byte> pom1 = Permutation.IPPerm(message);

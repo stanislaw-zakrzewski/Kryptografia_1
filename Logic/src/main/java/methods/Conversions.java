@@ -63,13 +63,12 @@ public class Conversions {
     }
 
     //Przerabia gotowy ciąg binarny w postaci string na ciąg binarny w postaci listy jednakowych ciągów binarnych o długości 64
-    public static List<List<Byte>> encodedMessageTo64Byte(String message) {
+    public static List<List<Byte>> encodedMessageTo64Byte(List<Byte> message) {
         List<List<Byte>> ret = new ArrayList<>();
-        for(int i = 0; i < message.length()/64; i++) {
+        for(int i = 0; i < message.size()/64; i++) {
             ret.add(new ArrayList<>());
             for(int j = 0; j < 64; j++) {
-                ret.get(i).add((byte)(message.getBytes()[i*64+j] == "1".getBytes()[0] ? 1 : 0));
-
+                ret.get(i).add(message.get(i*64+j));
             }
         }
         return ret;
