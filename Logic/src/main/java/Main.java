@@ -34,9 +34,9 @@ public class Main {
             }
         }
 
-        List<Byte> encoded = a.encode3DES(list,"qwertyuioppoiuytrewqasdf");
+        List<Byte> encoded = a.encode3DES(list,"ffffffff11111111dddddddd22222222aaaaaaaa77777777");
         //TODO binarka do filea
-        List<Byte> decoded = a.decode3DES(encoded, "qwertyuioppoiuytrewqasdf");
+        List<Byte> decoded = a.decode3DES(encoded, "ffffffff11111111dddddddd22222222aaaaaaaa77777777");
         for(byte b : decoded) {
             System.out.print(b);
         }

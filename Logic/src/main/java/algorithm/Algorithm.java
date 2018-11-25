@@ -20,9 +20,9 @@ public class Algorithm {
      * @return - zakodowany ciag binarny w postaci string
      */
     public List<Byte> encode3DES (List<Byte> message, String key){
-        Key k1 = new Key(key.substring(0, 8)); //TODO
-        Key k2 = new Key(key.substring(8, 16)); //TODO
-        Key k3 = new Key(key.substring(16, 24)); //TODO
+        Key k1 = new Key(key.substring(0, 16)); //TODO
+        Key k2 = new Key(key.substring(16, 32)); //TODO
+        Key k3 = new Key(key.substring(32, 48)); //TODO
 
         List<Byte> encode = encode(message, k1);
         List<Byte> decode = decode(encode, k2);
@@ -37,9 +37,9 @@ public class Algorithm {
      * @return - zwracana odkodowana wiadomosc w ciagu binarnym
      */
     public List<Byte> decode3DES(List<Byte> message, String key) {
-        Key k1 = new Key(key.substring(0, 8)); //TODO
-        Key k2 = new Key(key.substring(8, 16)); //TODO
-        Key k3 = new Key(key.substring(16, 24)); //TODO
+        Key k1 = new Key(key.substring(0, 16)); //TODO
+        Key k2 = new Key(key.substring(16, 32)); //TODO
+        Key k3 = new Key(key.substring(32, 48)); //TODO
 
         List<Byte> decode = decode(message, k3);
         List<Byte> encode = encode(decode, k2);
