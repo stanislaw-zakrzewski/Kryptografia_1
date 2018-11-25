@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import keys.GenerateKey;
 import methods.Conversions;
 
 import javax.swing.*;
@@ -22,6 +23,7 @@ public class Controller {
     private Algorithm algorithm;
     private File file;
     private SaveToFile saveToFile;
+    private GenerateKey generateKey;
 
     @FXML
     public TextArea key, messages;
@@ -31,6 +33,7 @@ public class Controller {
     public Controller() {
         algorithm = new Algorithm();
         saveToFile = new SaveToFile();
+        generateKey = new GenerateKey();
     }
 
     public void pressBrowse(ActionEvent event) {
@@ -45,6 +48,7 @@ public class Controller {
     }
 
     public void pressEncode(ActionEvent event) {
+        System.out.println(key.getText().length());
         if(file != null && key.getText().length() == 48) {
             encode.setDisable(true);
             List<Byte> list = new ArrayList<>();
@@ -79,10 +83,11 @@ public class Controller {
             }*/
             saveToFile.save("oko2.png", decoded, algorithm.toRemoveBytes);
             messages.setText("your file has been successfully decoded");
+            decode.setDisable(true);
         }
     }
 
     public void pressRandomKey(ActionEvent event) {
-
+        key.setText(generateKey.getRandomKey());
     }
 }
