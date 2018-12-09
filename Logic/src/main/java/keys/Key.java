@@ -51,31 +51,23 @@ public class Key {
     }
     private List<Byte> hexToBin(String hex){
         ArrayList<Byte> resoult = new ArrayList<>();
-        //ArrayList<Byte> partResoult= new ArrayList<>();
         for(int i = 0;i<hex.length();i++){
 
             int bin = Integer.parseInt(hex.substring(i,i+1),16);
             String pom = Integer.toBinaryString(bin);
-
-            //System.out.println(bin);
-            //System.out.println(pom);
             for(int j = 3; j >= 0;j--){
                 if(j<pom.length()){
                     if(pom.charAt(j)=='1'){
-                        //partResoult.add((byte) 1);
                         resoult.add((byte) 1);
                     }else {
-                        //partResoult.add((byte) 0);
                         resoult.add((byte) 0);
                     }
                 }else {
-                    //partResoult.add((byte) 0);
                     resoult.add((byte) 0);
                 }
             }
         }
         return resoult;
-        //System.out.println(partResoult);
     }
 
 
